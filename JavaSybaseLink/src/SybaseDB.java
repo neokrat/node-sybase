@@ -1,7 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import com.sybase.jdbc3.jdbc.SybDriver;
+import com.sybase.jdbc4.jdbc.SybDriver;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
@@ -47,14 +47,14 @@ public class SybaseDB {
 		this.password = password;
 		this.props = props;
 		this.props.put("user", username);
-		this.props.put("password", password);		
+		this.props.put("password", password);
 		df.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
 
 	public boolean connect()
 	{
 		try {
-			SybDriver sybDriver = (SybDriver) Class.forName("com.sybase.jdbc3.jdbc.SybDriver").newInstance();
+			SybDriver sybDriver = (SybDriver) Class.forName("com.sybase.jdbc4.jdbc.SybDriver").newInstance();
 			conn = DriverManager.getConnection("jdbc:sybase:Tds:" + host + ":" + port + "/" + dbname, props);
 			return true;
 
